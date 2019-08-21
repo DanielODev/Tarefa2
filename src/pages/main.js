@@ -12,19 +12,20 @@ export default class Main extends Component {
   render() {
     return (
         <View>
-            <Text>Página main</Text>
-
-            <Button
-              onPress={() => {this.props.navigation.navigate('Login') }}
-              title="Login"
-              color="#841584"
-            />
-
-            <Button
-              onPress={() => {this.props.navigation.navigate('NewAccount') }}
-              title="New Account"
-              color="#841584"
-            />
+            <View>
+              <Button
+                onPress={() => {this.props.navigation.navigate('Login') }}
+                title="Login"
+                color="#841584"
+              />
+            </View>
+            <View>
+              <Button
+                onPress={() => {this.props.navigation.navigate('NewAccount') }}
+                title="New Account"
+                color="#841584"
+              />
+            </View>
         </View>
     );
   }
