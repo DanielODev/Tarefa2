@@ -1,8 +1,7 @@
 import React, { Component } from 'React'
-//import api from '../services/api'
 
 import { View, Text, Button} from 'react-native'
-
+import styles from './styles'
 
 export default class Main extends Component {
   static navigationOptions = {
@@ -12,15 +11,15 @@ export default class Main extends Component {
   render() {
     return (
         <View>
-            <View>
-              <Button
+            <View style={{ padding:10}}>
+              <Button style={styles.button}
                 onPress={() => {this.props.navigation.navigate('Login') }}
                 title="Login"
                 color="#841584"
               />
             </View>
-            <View>
-              <Button
+            <View style={{ padding:10}}>
+              <Button style={styles.button}
                 onPress={() => {this.props.navigation.navigate('NewAccount') }}
                 title="New Account"
                 color="#841584"

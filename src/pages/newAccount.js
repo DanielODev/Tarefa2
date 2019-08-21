@@ -1,6 +1,7 @@
 import React, { Component } from 'React'
 import api from '../services/api'
 import { View, Text, Button, TextInput} from 'react-native'
+import styles from './styles'
 
 export default class NewAccount extends Component {
   constructor(props) {
@@ -22,39 +23,38 @@ export default class NewAccount extends Component {
         { 'name': this.state.name, 'cpf': this.state.cpf, 'password': this.state.password },
         { headers: { 'Content-Type': 'application/json' } })
     .then(res => {
-      console.log('res 2', res.data);
       this.props.navigation.navigate('Transaction', { data: res.data })
     })
     .catch(err => {
-      Alert.alert(':(', `Não foi possível realizar cadastro da conta bancária de ${this.state.cpf}.`)
-      console.log('err 2', err.response.data.error);
+      Alert.alert(':(', `Não foi possível realizar cadastro da conta bancária.`)
     })
   }
 
   render() {
-      return (
-        <View style={{padding: 10}}>
-          <Text>Nome</Text>
-          <TextInput 
-            value={this.state.name} 
-            onChangeText={value=>this.setState({ name: value })}/>
+    return (
+      <View style={{padding: 10}}>
+        <Text style={styles.text}>Nome</Text>
+        <TextInput style={styles.imput}
+          value={this.state.name} 
+          onChangeText={value=>this.setState({ name: value })}/>
+        
+        <Text style={styles.text} >CPF</Text>
+        <TextInput style={styles.imput}
+          value={this.state.cpf} 
+          onChangeText={value=>this.setState({ cpf: value })}/>
+        
+        <Text style={styles.text}>Senha</Text>
+        <TextInput style={styles.imput}
+          value={this.state.password} 
+          onChangeText={value=>this.setState({ password: value })}/>
           
-          <Text>Cpf</Text>
-          <TextInput 
-            value={this.state.cpf} 
-            onChangeText={value=>this.setState({ cpf: value })}/>
-          
-          <Text>Senha</Text>
-          <TextInput 
-            value={this.state.password} 
-            onChangeText={value=>this.setState({ password: value })}/>
-            
-            <Button
-                onPress={() => {this.onPressNewAccount() }}
-                title="New Account"
-                color="#841584"
-                />
-        </View>
-      );
+          <Button style={styles.button}
+              onPress={() => {this.onPressNewAccount() }}
+              title="Create"
+              color="#841584"
+              />
+      </View>
+    );
   }
 }
+
