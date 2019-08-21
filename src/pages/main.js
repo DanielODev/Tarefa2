@@ -1,5 +1,5 @@
 import React, { Component } from 'React'
-import api from '../services/api'
+//import api from '../services/api'
 
 import { View, Text, Button} from 'react-native'
 
@@ -8,10 +8,6 @@ export default class Main extends Component {
   static navigationOptions = {
     title: 'Account App'  
   }
-
-//   componentDidMount() {
-//       this.load
-//   }
 
   render() {
     return (

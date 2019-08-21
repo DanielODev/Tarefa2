@@ -22,12 +22,12 @@ export default class Login extends Component {
         { 'cpf': this.state.cpf, 'password': this.state.password },
         { headers: { 'Content-Type': 'application/json' } })
     .then(res => {
-      console.log('res 2', res.data);
-      this.props.navigation.navigate('Transaction')
+    //  console.log('res 2', res.data);
+      this.props.navigation.navigate('Transaction', { data: res.data })
     })
     .catch(err => {
       Alert.alert(':(', `Não foi possível realizar o login na conta bancária de ${this.state.cpf}.`)
-      console.log('err 2', err.response.data.error);
+    //  console.log('err 2', err.response.data.error);
     })
   }
 
