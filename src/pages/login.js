@@ -15,7 +15,7 @@ export default class Login extends Component {
   }
 
   static navigationOptions = {
-    title: 'Account Login'  
+    title: 'Account App - Login'  
   }
 
   onPressLogin = () => {
@@ -33,21 +33,24 @@ export default class Login extends Component {
   render() {
     return (
       <View style={{padding: 10}}>
-          <Text style={styles.text}>Cpf</Text>
-          <TextInput style={styles.imput} 
+          <Text style={styles.text}>CPF</Text>
+          <TextInput style={styles.input} 
             value={this.state.cpf} 
             onChangeText={value=>this.setState({ cpf: value })}/>
           
           <Text style={styles.text}>Senha</Text>
-          <TextInput style={styles.imput}
+          <TextInput style={styles.input}
             value={this.state.password} 
             onChangeText={value=>this.setState({ password: value })}/>
 
-          <Button style={styles.button}
-            onPress={() => {this.onPressLogin() }}
-            title="Efetuar Login"
-            color="#841584"
-            />
+          <View style={{ padding:10 }}>
+            <Button style={styles.button}
+              onPress={() => {this.onPressLogin() }}
+              title="Efetuar Login"
+              color="#841584"
+              />
+          </View>
+
       </View>
     );
   }

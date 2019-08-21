@@ -15,7 +15,7 @@ export default class NewAccount extends Component {
   }
 
   static navigationOptions = {
-    title: 'Account new'  
+    title: 'Account App - Nova Conta'  
   }
 
   onPressNewAccount = () => {
@@ -34,25 +34,27 @@ export default class NewAccount extends Component {
     return (
       <View style={{padding: 10}}>
         <Text style={styles.text}>Nome</Text>
-        <TextInput style={styles.imput}
+        <TextInput style={styles.input}
           value={this.state.name} 
           onChangeText={value=>this.setState({ name: value })}/>
         
         <Text style={styles.text} >CPF</Text>
-        <TextInput style={styles.imput}
+        <TextInput style={styles.input}
           value={this.state.cpf} 
           onChangeText={value=>this.setState({ cpf: value })}/>
         
         <Text style={styles.text}>Senha</Text>
-        <TextInput style={styles.imput}
+        <TextInput style={styles.input}
           value={this.state.password} 
           onChangeText={value=>this.setState({ password: value })}/>
-          
+        
+        <View style={{ padding:10 }}>
           <Button style={styles.button}
-              onPress={() => {this.onPressNewAccount() }}
-              title="Create"
-              color="#841584"
-              />
+            onPress={() => {this.onPressNewAccount() }}
+            title="Criar Conta"
+            color="#841584"
+          />
+        </View>
       </View>
     );
   }

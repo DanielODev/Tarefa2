@@ -18,10 +18,11 @@ export default class Main extends Component {
                 color="#841584"
               />
             </View>
+
             <View style={{ padding:10}}>
               <Button style={styles.button}
                 onPress={() => {this.props.navigation.navigate('NewAccount') }}
-                title="New Account"
+                title="Criar nova conta"
                 color="#841584"
               />
             </View>
