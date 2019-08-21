@@ -13,7 +13,15 @@ export default class Transaction extends Component {
     }
   }
 
+  static navigationOptions = {
+    title: 'Account transaction'  
+  }
+
   componentDidMount() {
+    this.loadTransactions()
+  }
+
+  loadTransactions = () => {
     const token = `Bearer ${this.props.navigation.state.params.data.token}`;
     console.log('token ' , token)
 
@@ -29,10 +37,6 @@ export default class Transaction extends Component {
       })
   }
 
-  static navigationOptions = {
-    title: 'Account transaction'  
-  }
-
   onPressDeposit = () => {
     const token = `Bearer ${this.props.navigation.state.params.data.token}`;
     console.log('deposit', this.state.amount)
@@ -41,7 +45,9 @@ export default class Transaction extends Component {
         { 'type': 'deposit','amount': this.state.amount },
         { headers: { 'Authorization': token, 'Content-Type': 'application/json' } })
     .then(res => {
-      console.log('res', res.data)
+      console.log('res deposit', res.data)
+      Alert.alert(':)', `Depósito de ${this.state.amount} realizado com sucesso!!!`)
+      this.loadTransactions()
       //this.setState({data: res.data})
     })
     .catch(err => {
@@ -58,7 +64,9 @@ export default class Transaction extends Component {
         { 'type': 'withdraw', 'amount': this.state.amount },
         { headers: { 'Authorization': token, 'Content-Type': 'application/json' } })
     .then(res => {
-      console.log('res', res.data)
+      console.log('res withdraw', res.data)
+      Alert.alert(':)', `Resgate de ${this.state.amount} realizado com sucesso!!!`)
+      this.loadTransactions()
       //this.setState({data: res.data})
     })
     .catch(err => {
@@ -77,13 +85,13 @@ export default class Transaction extends Component {
 
   render() {
     return (
-      <View>
-        <View style={{ padding:10 }}>
+      <View style={{ flex:1 }}>
+        <View style={{ padding:10, flex:1 }}>
           <Text>CONTA</Text>
           <Text>{`Nome da conta: ${this.props.navigation.state.params.data.account.name}`}</Text>
           <Text>{`Cpf do titular: ${this.props.navigation.state.params.data.account.cpf}`}</Text>
 
-          <View style={{ padding:10 }}>
+          <View>
             <Text>MOVIMENTAÇÃO</Text>
             <Text>Valor</Text>
             <TextInput 
@@ -101,17 +109,19 @@ export default class Transaction extends Component {
             />
           </View>
           
-          <Text>EXTRATO</Text>
-          <Text>{`Saldo: ${this.state.data.total}`}</Text>
+          
+          <Text style={{ padding:10 }}>{`SALDO ATUAL: ${this.state.data.total}`}</Text>
+          <Text style={{ padding:10 }}>EXTRATO</Text>
           {
             this.state.data &&
-            <ScrollView style={{ padding:10, flex:1 }}>
-              <FlatList 
+            <ScrollView contentContainerStyle={{ flexGrow: 1, paddingTop:10, paddingBottom:10 }}>
+              <FlatList style={{ flex: 1 }}
                 data={this.state.data.transactions}
                 keyExtractor={(item, index) => item.id}
                 //keyExtractor={item => item.id.toString()}
                 renderItem={this._renderItem}
               />
+              <Text style={{ padding:10 }}>{`SALDO ATUAL: ${this.state.data.total}`}</Text>
             </ScrollView>
           }
         </View>
