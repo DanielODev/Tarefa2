@@ -1,4 +1,4 @@
-# Tarefa2
+# App React-Native
 
 ## Nome do projeto:
 Tarefa2
